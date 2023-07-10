@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
+import { PhotoDto } from './types';
 
 @Injectable()
 export class PhotosService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createPhoto(Name: string, Description: string) {
+  async create(photo: PhotoDto) {
     return await this.prisma.photo.create({
       data: {
-        Name,
-        Description,
+        ...photo
       },
     });
   }

@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Delete } from '@nestjs/common';
 import { PhotosService } from './photos.service';
 import { async } from 'rxjs';
+import { PhotoDto } from './types';
 
 @Controller('photos')
 export class PhotosController {
@@ -12,8 +13,8 @@ export class PhotosController {
   }
 
   @Post()
-  create(@Body() body: { name: string; description: string }) {
-    return this.photo.createPhoto(body.name, body.description);
+  create(@Body() data: PhotoDto) {
+    return this.photo.create(data);
   }
 
   @Get()
